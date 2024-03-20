@@ -4,6 +4,7 @@ import { Observable, forkJoin, of } from 'rxjs';
 import { catchError, map, tap } from 'rxjs/operators';
 import { LoggingService } from './logging.service';
 import { HttpClient } from '@angular/common/http';
+import { environment } from '../../environments/environment';
 
 // importation des données de test
 import { bdInitialAssignments } from './data';
@@ -17,8 +18,10 @@ export class AssignmentsService {
   constructor(private logService:LoggingService,
               private http:HttpClient) { }
 
-  //uri = 'http://localhost:8010/api/assignments';
-  uri = "https://angularmbdsmadagascar2024.onrender.com/api/assignments";
+  // variable défini dans src/environments/environment.ts
+  uri = `${environment.backend_uri}/api/assignments`;
+
+  // uri = "https://angularmbdsmadagascar2024.onrender.com/api/assignments";
 
   // retourne tous les assignments
   getAssignments():Observable<Assignment[]> {
